@@ -18,12 +18,18 @@ const int Dweller::getSPECIAL()
     static int o[7] = {};
     int divide[7] = { 1000000, 100000, 10000, 1000, 100, 10, 1 };
 
-    if (!outfit_)
+
+    if ((health_ - radiation_) <= 0)
+    {
+        return 0000000;
+    }
+
+    else if (!outfit_)
     {
         return SPECIAL_;
     }
 
-    if (outfit_->getDurability() <= 0)
+    else if (outfit_->getDurability() <= 0)
     {
         for (int i = 0; i < 7; i++)
         {
@@ -82,8 +88,14 @@ const int Dweller::getCurrentRadDamage()
 
 const int Dweller::getAttackDmg()
 {
+    //No damage if Dweller is dead.
+    if ((health_ - radiation_) <= 0)
+    {
+        return 0;
+    }
+
     //Return 1 damage if there are no weapon equipped.
-    if (!weapon_ || weapon_->getDurability() <= 0)
+    else if (!weapon_ || weapon_->getDurability() <= 0)
     {
         return 1;
     }
@@ -108,10 +120,12 @@ const Vec2D Dweller::getPosition()
 
 void Dweller::receiveHealthDamage(const int& damage)
 {
-    this->health_ -= (radiation_ + damage);
-    if (health_ < 0)
+    this->health_ -= damage;
+
+    if ((health_ - radiation_) <= 0)
     {
         health_ = 0;
+        radiation_ = 0;
     }
 }
 
@@ -125,7 +139,11 @@ void Dweller::receiveRadDamage(const int& damage)
         radiation_ = 100;
     }
 
-    this->health_ -= radiation_;
+    if ((health_ - radiation_) <= 0)
+    {
+        health_ = 0;
+        radiation_ = 0;
+    }
 }
 
 void Dweller::receiveEquipmentDamage(const int& damage)
@@ -154,7 +172,7 @@ void Dweller::addRadAway(const int& radAway)
 
 void Dweller::useStimpak()
 {
-    if (health_ >= 100 && stimpak_ != 0)
+    if (health_ < 100 && stimpak_ != 0)
     {
         stimpak_--;
         health_ += 20;
@@ -163,10 +181,14 @@ void Dweller::useStimpak()
 
 void Dweller::useRadAway()
 {
-    if (radaway_ != 0)
+    if (radaway_ != 0 && radiation_ > 0)
     {
         radaway_--;
         radiation_ -= 10;
+        if (radiation_ < 0)
+        {
+            radiation_ = 0;
+        }
     }
 }
 
@@ -184,7 +206,7 @@ Weapon* Dweller::assignWeapon(Weapon* name)
 
 bool Dweller::isDead()
 {
-    if (this->health_ <= 0)
+    if ((this->health_ - this->radiation_) <= 0)
     {
         return true;
     }
