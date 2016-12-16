@@ -21,7 +21,7 @@ int main()
     Outfit o("Test Name", 0, 6969696);
 
     //Left Int Durability Right Int Damage.
-    Weapon testWeap("TestWeap", 100, 222);
+    Weapon testWeap("TestWeap", 1, 222);
     d.assignWeapon(&testWeap);
     d.assignOutfit(&o);
 
@@ -38,6 +38,9 @@ int main()
     cout << "Dweller Special" << endl;
     cout << d.getSPECIAL() << "\n" << endl;
 
+    cout << "Dweller Attack" << endl;
+    cout << d.getAttackDmg() << "\n" << endl;
+
     cout << "Outfit Name" << endl;
     cout << o.getName() << "\n" << endl;
 
@@ -45,7 +48,7 @@ int main()
     cout << o.getSPECIAL() << "\n" << endl;
 
     cout << "Weapon Damage" << endl;
-    cout << d.getAttackDmg() << "\n" << endl;
+    cout << testWeap.getAttackDmg() << "\n" << endl;
 
     
 

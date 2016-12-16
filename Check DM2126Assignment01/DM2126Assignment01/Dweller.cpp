@@ -53,7 +53,7 @@ const int Dweller::getCurrentRadDamage()
 
 const int Dweller::getAttackDmg()
 {
-    if (!weapon_)
+    if (!weapon_ || weapon_->getDurability() <= 0)
     {
         return 1;
     }
