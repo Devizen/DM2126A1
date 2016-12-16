@@ -44,6 +44,7 @@ const int Dweller::getSPECIAL()
     {
         for (int i = 0; i < 7; i++)
         {
+            //Get the single digit of Dweller Special and deduct away the single digit of Outfit Special.
             d[i] = { ((this->SPECIAL_ / divide[i]) % 10) + ((outfit_->getSPECIAL() / divide[i]) % 10) };
 
             //Backup Outfit Special
@@ -71,7 +72,7 @@ const int Dweller::getSPECIAL()
 
 const int Dweller::getCurrentHealth()
 {
-    return health_;
+    return (health_ - radiation_);
 }
 
 const int Dweller::getCurrentRadDamage()
@@ -81,11 +82,13 @@ const int Dweller::getCurrentRadDamage()
 
 const int Dweller::getAttackDmg()
 {
+    //Return 1 damage if there are no weapon equipped.
     if (!weapon_ || weapon_->getDurability() <= 0)
     {
         return 1;
     }
     else
+    //Return weapon damage.
     {
         return weapon_->getAttackDmg();
     }
@@ -93,6 +96,7 @@ const int Dweller::getAttackDmg()
 
 void Dweller::setPosition(const Vec2D& name)
 {
+    //Assign x and y to position.
     position_.x = name.x;
     position_.y = name.y;
 }
@@ -104,7 +108,7 @@ const Vec2D Dweller::getPosition()
 
 void Dweller::receiveHealthDamage(const int& damage)
 {
-    this->health_ -= damage;
+    this->health_ -= (radiation_ + damage);
     if (health_ < 0)
     {
         health_ = 0;
@@ -113,25 +117,29 @@ void Dweller::receiveHealthDamage(const int& damage)
 
 void Dweller::receiveRadDamage(const int& damage)
 {
-    //if (useRadAway == true)
-    //{
-    //    this->health_ -= rad + 10;
-    //}
-    //else
-    //{
-        this->health_ -= damage;
-    //}
 
-    if (health_ < 0)
+    this->radiation_ += damage;
+
+    if (radiation_ > 100)
     {
-        health_ = 0;
+        radiation_ = 100;
     }
+
+    this->health_ -= radiation_;
 }
 
 void Dweller::receiveEquipmentDamage(const int& damage)
 {
-    outfit_->receiveDamage(damage);
-    weapon_->receiveDamage(damage);
+    //Only deduct durability if there are equipments.
+    if (outfit_)
+    {
+        outfit_->receiveDamage(damage);
+    }
+
+    if (weapon_)
+    {
+        weapon_->receiveDamage(damage);
+    }
 }
 
 void Dweller::addStimpak(const int& stimpak)
@@ -146,7 +154,7 @@ void Dweller::addRadAway(const int& radAway)
 
 void Dweller::useStimpak()
 {
-    if (health_ != 100 && stimpak_ != 0)
+    if (health_ >= 100 && stimpak_ != 0)
     {
         stimpak_--;
         health_ += 20;
@@ -155,16 +163,22 @@ void Dweller::useStimpak()
 
 void Dweller::useRadAway()
 {
-
+    if (radaway_ != 0)
+    {
+        radaway_--;
+        radiation_ -= 10;
+    }
 }
 
 Outfit* Dweller::assignOutfit(Outfit* name)
 {
+    //Assign outfit_ to Outfit object.
     return outfit_ = name;
 }
 
 Weapon* Dweller::assignWeapon(Weapon* name)
 {
+    //Assign weapon_ to Weapon object.
     return weapon_ = name;
 }
 

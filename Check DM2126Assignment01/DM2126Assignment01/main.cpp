@@ -14,8 +14,8 @@ void shouldNotCompile();
 
 int main()
 {
-    //testNames();
-    //shouldNotCompile();
+    testNames();
+    shouldNotCompile();
 
     Dweller d("One", 7624221);
     Outfit o("Test Name", 12, 6969696);
@@ -50,6 +50,9 @@ int main()
     cout << "Outfit Durability" << endl;
     cout << o.getDurability() << "\n" << endl;
 
+    cout << "Weapon Name" << endl;
+    cout << testWeap.getName() << "\n" << endl;
+
     cout << "Weapon Durability" << endl;
     cout << testWeap.getDurability() << "\n" << endl;
 
@@ -79,6 +82,13 @@ int main()
 
     cout << "Dweller Attack" << endl;
     cout << d.getAttackDmg() << "\n" << endl;
+
+    Weapon testWeap2("TestWeap2", 1, 444);
+    d.assignWeapon(&testWeap2);
+    cout << "Dweller Attack After New Weapon" << endl;
+    cout << d.getAttackDmg() << "\n" << endl;
+
+
     system("pause");
     return 0;
 
