@@ -1,0 +1,24 @@
+﻿Build started 12/16/2016 2:41:30 PM.
+     1>Project "D:\2126\Check DM2126Assignment01\DM2126Assignment01\DM2126Assignment01.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Item.cpp Outfit.cpp Weapon.cpp main.cpp
+         main.cpp
+         Weapon.cpp
+         Outfit.cpp
+         Item.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\2126\Check DM2126Assignment01\Debug\DM2126Assignment01.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\2126\Check DM2126Assignment01\Debug\DM2126Assignment01.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\2126\Check DM2126Assignment01\Debug\DM2126Assignment01.lib" /MACHINE:X86 Debug\compileCheck.obj
+         Debug\Dweller.obj
+         Debug\GameObject.obj
+         Debug\Item.obj
+         Debug\main.obj
+         Debug\Outfit.obj
+         Debug\Vec2D.obj
+         Debug\Weapon.obj
+         DM2126Assignment01.vcxproj -> D:\2126\Check DM2126Assignment01\Debug\DM2126Assignment01.exe
+     1>Done Building Project "D:\2126\Check DM2126Assignment01\DM2126Assignment01\DM2126Assignment01.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:05.61
