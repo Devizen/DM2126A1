@@ -26,13 +26,17 @@ public:
 	void receiveRadDamage(const int& damage);
 	void receiveEquipmentDamage(const int& damage);
 
-
+    //Adders
 	void addStimpak(const int& stimpak);
 	void addRadAway(const int& radAway);
+
+    //Users
 	void useStimpak();
 	void useRadAway();
-	Outfit* assignOutfit(Outfit*);
-	Weapon* assignWeapon(Weapon*);
+
+    //Assigning Objects
+	Outfit* assignOutfit(Outfit* name);
+	Weapon* assignWeapon(Weapon* name);
 
     //Check if player is dead.
 	bool isDead();

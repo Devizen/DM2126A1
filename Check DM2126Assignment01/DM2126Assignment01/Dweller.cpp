@@ -13,8 +13,13 @@ Dweller::~Dweller()
 
 const int Dweller::getSPECIAL()
 {
+    //Array to store Dweller Special Value.
     int d[7] = {};
+
+    //Array to store Dweller Special Value as backup.
     static int dOverNine[7] = {};
+
+    //Array to store Outfit Special Value.
     static int o[7] = {};
     int divide[7] = { 1000000, 100000, 10000, 1000, 100, 10, 1 };
 
@@ -120,10 +125,12 @@ const Vec2D Dweller::getPosition()
 
 void Dweller::receiveHealthDamage(const int& damage)
 {
+    //Deduct health with damage.
     this->health_ -= damage;
 
     if ((health_ - radiation_) <= 0)
     {
+        //All set to 0 as Dweller is now dead.
         health_ = 0;
         radiation_ = 0;
     }

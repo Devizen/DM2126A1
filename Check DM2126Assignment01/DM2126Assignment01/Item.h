@@ -13,6 +13,7 @@ public:
 
 
 protected:
+    //Durability of Outfit and Weapon.
 	int durability_;
 
 //private:
