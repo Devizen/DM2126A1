@@ -9,7 +9,7 @@ GameObject::GameObject(const string& name) : kName(name)
 
 GameObject::~GameObject()
 {
-
+    count_--;
 }
 
 string GameObject::getName(void)

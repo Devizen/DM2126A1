@@ -1,4 +1,5 @@
 #include "Item.h"
+#include "Dweller.h"
 
 Item::Item(const string& name, const int& durability) : GameObject(name)
 {
@@ -12,7 +13,7 @@ Item::~Item()
 
 void Item::receiveDamage(const int& damage)
 {
-    durability_ -= damage;
+
 }
 
 const int Item::getDurability()

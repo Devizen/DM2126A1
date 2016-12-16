@@ -10,6 +10,8 @@ public:
 	~Outfit();
 	const int getSPECIAL();
 
+    virtual void receiveDamage(const int& damage);
+
 protected:
 	const int kSPECIAL;
 

@@ -14,14 +14,14 @@ void shouldNotCompile();
 
 int main()
 {
-    testNames();
-    shouldNotCompile();
+    //testNames();
+    //shouldNotCompile();
 
     Dweller d("One", 7624221);
-    Outfit o("Test Name", 0, 6969696);
+    Outfit o("Test Name", 12, 6969696);
 
     //Left Int Durability Right Int Damage.
-    Weapon testWeap("TestWeap", 1, 222);
+    Weapon testWeap("TestWeap", 12, 222);
     d.assignWeapon(&testWeap);
     d.assignOutfit(&o);
 
@@ -47,12 +47,38 @@ int main()
     cout << "Outfit Special" << endl;
     cout << o.getSPECIAL() << "\n" << endl;
 
+    cout << "Outfit Durability" << endl;
+    cout << o.getDurability() << "\n" << endl;
+
+    cout << "Weapon Durability" << endl;
+    cout << testWeap.getDurability() << "\n" << endl;
+
     cout << "Weapon Damage" << endl;
     cout << testWeap.getAttackDmg() << "\n" << endl;
 
+    d.receiveEquipmentDamage(24);
+
+    o.receiveDamage(6);
+    testWeap.receiveDamage(6);
+
+    cout << "Outfit Durability After Damage" << endl;
+    cout << o.getDurability() << "\n" << endl;
+
+    cout << "Weapon Durability After Damage" << endl;
+    cout << testWeap.getDurability() << "\n" << endl;
+
     
+    cout << "Dweller Special" << endl;
+    cout << d.getSPECIAL() << "\n" << endl;
 
+    cout << "Outfit Special" << endl;
+    cout << o.getSPECIAL() << "\n" << endl;
 
+    cout << "Weapon Damage" << endl;
+    cout << testWeap.getAttackDmg() << "\n" << endl;
+
+    cout << "Dweller Attack" << endl;
+    cout << d.getAttackDmg() << "\n" << endl;
     system("pause");
     return 0;
 

@@ -9,6 +9,8 @@ public:
 	~Weapon();
 	const int getAttackDmg();
 
+    virtual void receiveDamage(const int& damage);
+
 protected:
 	const int kAttackDmg = 0;
 

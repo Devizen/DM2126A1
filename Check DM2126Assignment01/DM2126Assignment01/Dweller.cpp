@@ -1,8 +1,9 @@
 #include "Dweller.h"
 
-Dweller::Dweller(const string& name, const int& special) : GameObject(name)
+
+Dweller::Dweller(const string& name, const int& special) : GameObject(name), SPECIAL_(special)
 {
-    this->SPECIAL_ = special;
+
 }
 
 Dweller::~Dweller()
@@ -12,7 +13,7 @@ Dweller::~Dweller()
 
 const int Dweller::getSPECIAL()
 {
-    if (!outfit_)
+    if (!outfit_ || (outfit_->getDurability() <= 0))
     {
         return SPECIAL_;
     }
@@ -79,29 +80,41 @@ void Dweller::receiveHealthDamage(const int& damage)
     this->health_ -= damage;
 }
 
-void Dweller::receiveRadDamage(const int& rad)
+void Dweller::receiveRadDamage(const int& damage)
 {
-    this->health_ -= rad;
+    //if (useRadAway == true)
+    //{
+    //    this->health_ -= rad + 10;
+    //}
+    //else
+    {
+        this->health_ -= damage;
+    }
 }
 
-void Dweller::receiveEquipmentDamage(const int&)
+void Dweller::receiveEquipmentDamage(const int& damage)
 {
-
+    outfit_->receiveDamage(damage);
+    weapon_->receiveDamage(damage);
 }
 
-void Dweller::addStimpak(const int&)
+void Dweller::addStimpak(const int& stimpak)
 {
     stimpak_++;
 }
 
-void Dweller::addRadAway(const int&)
+void Dweller::addRadAway(const int& radAway)
 {
     radaway_++;
 }
 
 void Dweller::useStimpak()
 {
-
+    if (health_ != 100 && stimpak_ != 0)
+    {
+        stimpak_--;
+        health_ += 20;
+    }
 }
 
 void Dweller::useRadAway()

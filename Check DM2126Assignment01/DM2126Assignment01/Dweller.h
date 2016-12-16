@@ -22,13 +22,13 @@ public:
 	const Vec2D getPosition();
 
     //Damages
-	void receiveHealthDamage(const int&);
-	void receiveRadDamage(const int&);
-	void receiveEquipmentDamage(const int&);
+	void receiveHealthDamage(const int& damage);
+	void receiveRadDamage(const int& damage);
+	void receiveEquipmentDamage(const int& damage);
 
 
-	void addStimpak(const int&);
-	void addRadAway(const int&);
+	void addStimpak(const int& stimpak);
+	void addRadAway(const int& radAway);
 	void useStimpak();
 	void useRadAway();
 	Outfit* assignOutfit(Outfit*);
