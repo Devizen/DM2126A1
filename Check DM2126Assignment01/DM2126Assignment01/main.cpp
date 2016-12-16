@@ -133,6 +133,8 @@ int main()
     d.addStimpak(1);
     d.useStimpak();
     d.receiveRadDamage(0);
+    Outfit* shirt = new Outfit("shirt", 1, 1000000);
+
     cout << "Dweller is dead after Stimpak?" << endl;
     cout << d.isDead() << "\n" << endl;
 
@@ -150,6 +152,10 @@ int main()
 
     cout << "Dweller Attack" << endl;
     cout << d.getAttackDmg() << "\n" << endl;
+
+    d.assignOutfit(shirt);
+    cout << "Dweller Special" << endl;
+    cout << d.getSPECIAL() << "\n" << endl;
 
     system("pause");
     return 0;

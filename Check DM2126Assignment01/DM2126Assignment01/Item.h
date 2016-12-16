@@ -8,7 +8,7 @@ class Item : public GameObject
 public:
     Item(const string& name, const int& durability);
 	virtual ~Item() = 0;
-	virtual void receiveDamage(const int&) = 0;
+	virtual void receiveDamage(const int& damage) = 0;
 	virtual const int getDurability();
 
 

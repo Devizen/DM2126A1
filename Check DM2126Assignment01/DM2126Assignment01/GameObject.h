@@ -15,7 +15,7 @@ public:
 
 protected:
 	//Overload Function
-	GameObject(const string&);
+	GameObject(const string& name);
 
 	const string kName;
 
