@@ -18,7 +18,7 @@ int main()
     shouldNotCompile();
 
     Dweller d("One", 7624221);
-    Outfit o("Outfit", 0, 6969696);
+    Outfit o("Test Name", 0, 6969696);
 
     //Left Int Durability Right Int Damage.
     Weapon testWeap("TestWeap", 100, 222);
@@ -26,7 +26,7 @@ int main()
     d.assignOutfit(&o);
 
     cout << "Nothing should appear above" << endl;
-    cout << "Object Name" << endl;
+    cout << "Dweller Name" << endl;
     cout << d.getName() << "\n" << endl;
 
     cout << "Dweller Health" << endl;
@@ -37,6 +37,9 @@ int main()
 
     cout << "Dweller Special" << endl;
     cout << d.getSPECIAL() << "\n" << endl;
+
+    cout << "Outfit Name" << endl;
+    cout << o.getName() << "\n" << endl;
 
     cout << "Outfit Special" << endl;
     cout << o.getSPECIAL() << "\n" << endl;

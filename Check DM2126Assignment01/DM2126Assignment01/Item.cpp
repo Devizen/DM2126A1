@@ -1,8 +1,8 @@
 #include "Item.h"
 
-Item::Item(const string& name, const int& durability)
+Item::Item(const string& name, const int& durability) : GameObject(name)
 {
-
+    this->durability_ = durability;
 }
 
 Item::~Item()
