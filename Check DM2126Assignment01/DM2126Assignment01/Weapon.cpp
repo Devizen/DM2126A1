@@ -25,4 +25,9 @@ const int Weapon::getAttackDmg()
 void Weapon::receiveDamage(const int& damage)
 {
     durability_ -= (damage / 2);
+
+    if (durability_ < 0)
+    {
+        durability_ = 0;
+    }
 }

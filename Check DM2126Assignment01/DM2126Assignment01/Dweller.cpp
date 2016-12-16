@@ -13,18 +13,45 @@ Dweller::~Dweller()
 
 const int Dweller::getSPECIAL()
 {
-    if (!outfit_ || (outfit_->getDurability() <= 0))
+    int d[7] = {};
+    static int dOverNine[7] = {};
+    static int o[7] = {};
+    int divide[7] = { 1000000, 100000, 10000, 1000, 100, 10, 1 };
+
+    if (!outfit_)
     {
         return SPECIAL_;
     }
-    else
+
+    if (outfit_->getDurability() <= 0)
     {
-        int d[7] = {};
-        int divide[7] = { 1000000, 100000, 10000, 1000, 100, 10, 1 };
+        for (int i = 0; i < 7; i++)
+        {
+            d[i] = { dOverNine[i] - o[i] };
+        }
+
+        SPECIAL_ = 0;
 
         for (int i = 0; i < 7; i++)
         {
+            SPECIAL_ += (d[i] * divide[i]);
+        }
+
+        return SPECIAL_;
+    }
+
+    else
+    {
+        for (int i = 0; i < 7; i++)
+        {
             d[i] = { ((this->SPECIAL_ / divide[i]) % 10) + ((outfit_->getSPECIAL() / divide[i]) % 10) };
+
+            //Backup Outfit Special
+            o[i] = ((outfit_->getSPECIAL() / divide[i]) % 10);
+
+            //Backup Dweller Special that exceeds 9
+            dOverNine[i] = { ((this->SPECIAL_ / divide[i]) % 10) + ((outfit_->getSPECIAL() / divide[i]) % 10) };
+
             if (d[i] > 9)
             {
                 d[i] = 9;
@@ -78,6 +105,10 @@ const Vec2D Dweller::getPosition()
 void Dweller::receiveHealthDamage(const int& damage)
 {
     this->health_ -= damage;
+    if (health_ < 0)
+    {
+        health_ = 0;
+    }
 }
 
 void Dweller::receiveRadDamage(const int& damage)
@@ -87,8 +118,13 @@ void Dweller::receiveRadDamage(const int& damage)
     //    this->health_ -= rad + 10;
     //}
     //else
-    {
+    //{
         this->health_ -= damage;
+    //}
+
+    if (health_ < 0)
+    {
+        health_ = 0;
     }
 }
 

@@ -26,4 +26,9 @@ const int Outfit::getSPECIAL()
 void Outfit::receiveDamage(const int& damage)
 {
     durability_ -= damage;
+
+    if (durability_ < 0)
+    {
+        durability_ = 0;
+    }
 }
